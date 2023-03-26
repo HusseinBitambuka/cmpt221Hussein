@@ -1,0 +1,17 @@
+body{background-image: url('/images/mainmenu.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-size: cover;
+    }
+    li{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 25px;
+    }
+    #press{
+        position:absolute;
+        z-index:1px;
+        margin-left: 600px;
+        top: 450px;
+        font-size: 30px;}

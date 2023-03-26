@@ -1,0 +1,13 @@
+body{background-image: url('/images/hIwabo.jpeg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position-x: center;
+background-size: cover;
+}
+    #press{
+    position:absolute;
+    z-index:1px;
+    margin-left: 600px;
+    top: 450px;
+    font-size: 30px;
+}

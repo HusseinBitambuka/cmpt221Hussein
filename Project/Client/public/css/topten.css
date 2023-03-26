@@ -1,0 +1,25 @@
+body{background-image: url('/images/mainmenu.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x: center;
+    background-size: cover;
+    }
+    #return{
+        position:absolute;
+        z-index:1px;
+        margin-left: 500px;
+        top: 500px;
+        font-size: 30px;}
+    #topten{
+
+    }
+li{
+    margin-left: 10px; ;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 10px;
+}
+ol{
+    list-style-position: inside;
+    margin-top: 50px;
+}
