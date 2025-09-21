@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Practice Session Attack</title>
+    </head>
+    <body>
+        <h1>Welcome to the First Exploration of Session Attack!</h1>
+        <form id="loginForm">
+            <label for="username">
+                Name:
+                <input 
+                    id="username"
+                    name="username" 
+                    type="text"
+                    required
+                    autocomplete="username" />
+            </label>
+            <label for="password">
+                Password:
+                <input 
+                    id="password"
+                    type="password" 
+                    name="password"
+                    required
+                    autocomplete="current-password"/>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = {
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                };
+                
+                try {
+                    const response = await fetch('/post/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        // For HTML response, replace the entire document
+                        const htmlContent = await response.text();
+                        document.documentElement.innerHTML = htmlContent;
+                    } else {
+                        const data = await response.json();
+                        alert(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        </script>
+    </body>
+</html>
