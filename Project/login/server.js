@@ -6,7 +6,7 @@ const app = express()
 // Middleware
 app.use(express.static("./staticFiles"));
 app.use(bodyParser.json());
-app.use(cookieParser()); // Add cookie middleware
+app.use(cookieParser("dfsahbdjfhjahjfduhauihfjbfjdsf")); // Add cookie middleware
 
 function createHTMLResponse(userData) {
     const html = `
@@ -27,7 +27,7 @@ function createHTMLResponse(userData) {
 }
 
 const users = {
-    "bitambukahoussein@gmail.com": "mtumwema",
+    "bitambukahoussein@gmail.com": "tuoneivi",
     "Hussein.Bitambuka1@marist.edu": "buyenzi"
 };
 
@@ -37,6 +37,14 @@ const balances = {
 };
 
 app.get("/", (req, res) => {
+    const username = req.signedCookies.username
+    if (username){
+        const userData = {
+        username: username,
+        balance: balances[username] || '0'
+        }
+        res.send(createHTMLResponse(userData));
+    }
     res.sendFile("login.html", {root: "./staticFiles"});
 });
 
@@ -57,17 +65,9 @@ app.post("/post/login", (req, res) => {
 
     // Set secure cookie with httpOnly flag
     res.cookie('username', username, {
-        httpOnly: true,
-        sameSite: 'strict',
-        maxAge: 3600000 // 1 hour
+        signed:true
     });
-
-    const userData = {
-        username: username,
-        balance: balances[username] || '0'
-    };
-
-    res.send(createHTMLResponse(userData));
+    res.redirect('/')
 });
 
 const PORT = 4000;
